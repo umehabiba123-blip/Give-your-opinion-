@@ -1,56 +1,57 @@
 # Give-your-opinion-
-<html lang=”en”>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset=”UTF-8”>
-<meta name=”viewport” content=”width=device-width, initial-scale=1.0”>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Policy Suggestion Portal</title>
 <style>
-    Body {
-        Font-family: Arial, sans-serif;
-        Background-color: #ffffff;
-        Color: #004d26;
-        Margin: 0;
-        Padding: 0;
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+        color: #004d26;
+        margin: 0;
+        padding: 0;
     }
-    Header {
-        Background-color: #006633;
-        Color: white;
-        Padding: 15px;
-        Text-align: center;
-        Font-size: 1.5em;
-        Font-weight: bold;
+    header {
+        background-color: #006633;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-size: 1.5em;
+        font-weight: bold;
     }
     .container {
-        Max-width: 800px;
-        Margin: 20px auto;
-        Padding: 15px;
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 15px;
     }
-    Select, textarea, button {
-        Width: 100%;
-        Padding: 10px;
-        Margin-top: 10px;
-        Font-size: 1em;
-        Border: 1px solid #ccc;
-        Border-radius: 5px;
+    select, textarea, button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 5px;
     }
-    Button {
-        Background-color: #006633;
-        Color: white;
-        Cursor: pointer;
-        Border: none;
+    button {
+        background-color: #006633;
+        color: white;
+        cursor: pointer;
+        border: none;
     }
-    Button:hover {
-        Background-color: #004d26;
+    button:hover {
+        background-color: #004d26;
     }
     .suggestions {
-        Margin-top: 20px;
+        margin-top: 20px;
     }
     .suggestion {
-        Border: 1px solid #ccc;
-        Border-left: 5px solid #006633;
-        Padding: 10px;
-        Margin-bottom: 10px;
-        Background: #f9f9f9;
+        border: 1px solid #ccc;
+        border-left: 5px solid #006633;
+        padding: 10px;
+        margin-bottom: 10px;
+        background: #f9f9f9;
     }
 </style>
 </head>
@@ -58,10 +59,10 @@
 
 <header>Shape the Future — Your Policy Ideas Matter</header>
 
-<div class=”container”>
+<div class="container">
     <h2>Submit Your Suggestion</h2>
-    <select id=”department”>
-        <option value=””>Select Department</option>
+    <select id="department">
+        <option value="">Select Department</option>
         <option>Education</option>
         <option>Health</option>
         <option>Infrastructure</option>
@@ -71,12 +72,12 @@
         <option>Environment</option>
         <option>Economy</option>
     </select>
-    <textarea id=”opinion” placeholder=”Write your policy suggestion here…” rows=”4”></textarea>
-    <button onclick=”submitOpinion()”>Submit</button>
+    <textarea id="opinion" placeholder="Write your policy suggestion here..." rows="4"></textarea>
+    <button onclick="submitOpinion()">Submit</button>
 
     <h2>View Suggestions</h2>
-    <select id=”viewDept” onchange=”viewSuggestions()”>
-        <option value=””>Select Department</option>
+    <select id="viewDept" onchange="viewSuggestions()">
+        <option value="">Select Department</option>
         <option>Education</option>
         <option>Health</option>
         <option>Infrastructure</option>
@@ -87,41 +88,41 @@
         <option>Economy</option>
     </select>
     
-    <div class=”suggestions” id=”suggestionsList”></div>
+    <div class="suggestions" id="suggestionsList"></div>
 </div>
 
 <script>
-    Let data = {};
+    let data = {};
 
-    Function submitOpinion() {
-        Const dept = document.getElementById(‘department’).value;
-        Const opinion = document.getElementById(‘opinion’).value.trim();
+    function submitOpinion() {
+        const dept = document.getElementById('department').value;
+        const opinion = document.getElementById('opinion').value.trim();
         
-        If (!dept || !opinion) {
-            Alert(“Please select a department and write your suggestion.”);
-            Return;
-        }
-        
-        If (!data[dept]) data[dept] = [];
-        Data[dept].push(opinion);
-        
-        Document.getElementById(‘opinion’).value = “”;
-        Alert(“Your suggestion has been added!”);
-    }
-
-    Function viewSuggestions() {
-        Const dept = document.getElementById(‘viewDept’).value;
-        Const listDiv = document.getElementById(‘suggestionsList’);
-        listDiv.innerHTML = “”;
-        
-        if (!dept || !data[dept] || data[dept].length === 0) {
-            listDiv.innerHTML = “<p>No suggestions yet for this department.</p>”;
+        if (!dept || !opinion) {
+            alert("Please select a department and write your suggestion.");
             return;
         }
         
-        Data[dept].forEach(op => {
-            Const div = document.createElement(‘div’);
-            div.className = ‘suggestion’;
+        if (!data[dept]) data[dept] = [];
+        data[dept].push(opinion);
+        
+        document.getElementById('opinion').value = "";
+        alert("Your suggestion has been added!");
+    }
+
+    function viewSuggestions() {
+        const dept = document.getElementById('viewDept').value;
+        const listDiv = document.getElementById('suggestionsList');
+        listDiv.innerHTML = "";
+        
+        if (!dept || !data[dept] || data[dept].length === 0) {
+            listDiv.innerHTML = "<p>No suggestions yet for this department.</p>";
+            return;
+        }
+        
+        data[dept].forEach(op => {
+            const div = document.createElement('div');
+            div.className = 'suggestion';
             div.textContent = op;
             listDiv.appendChild(div);
         });
